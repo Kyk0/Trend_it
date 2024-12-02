@@ -59,6 +59,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 ROOT_URLCONF = 'Trend_it.Trend_it.urls'
+WSGI_APPLICATION = 'Trend_it.Trend_it.wsgi.application'
 
 TEMPLATES = [
     {
@@ -76,7 +77,6 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Trend_it.wsgi.application'
 
 
 # Database
