@@ -5,7 +5,9 @@ import numpy as np
 from scipy.stats import zscore
 from tslearn.clustering import TimeSeriesKMeans
 
-DATABASE_FILE = os.path.join(os.path.dirname(__file__), "data_database.db")
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+DATABASE_FILE = os.path.join(BASE_DIR, 'data_service', 'data_database.db')
 TIME_SERIES_COLUMNS = [str(year) for year in range(2010, 2021)]
 N_CLUSTERS = 30
 

@@ -32,7 +32,7 @@ const Home = () => {
         setRefreshing(true);
         setError(null);
         try {
-            const response = await fetch("http://127.0.0.1:8000/api/fetch-data/");
+            const response = await fetch("https://trend-it.onrender.com/api/fetch-data/");
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }

@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from .services import get_two_rows
 from .data_processing import process_and_save_if_needed
-
+import traceback
 
 class RandomNeighborView(APIView):
     def get(self, request, *args, **kwargs):
@@ -26,4 +26,6 @@ class RandomNeighborView(APIView):
                 status=status.HTTP_200_OK,
             )
         except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            error_trace = traceback.format_exc()
+            print(error_trace)
+            return Response({"error": f"Unexpected error: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
