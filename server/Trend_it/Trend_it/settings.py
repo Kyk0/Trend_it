@@ -58,7 +58,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
-ROOT_URLCONF = 'Trend_it.urls'
+ROOT_URLCONF = 'Trend_it.Trend_it.urls'
 
 TEMPLATES = [
     {
