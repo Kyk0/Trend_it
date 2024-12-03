@@ -58,6 +58,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://trend-it.vercel.app",
     "https://trend-it-sage.vercel.app",
+    "https://www.trend-it.org",
 ]
 
 ROOT_URLCONF = 'Trend_it.Trend_it.urls'
@@ -90,7 +91,7 @@ DATABASES = {
     }
 }
 
-ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1', ".vercel.app",]
+ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1', ".vercel.app", "trend-it.org",]
 
 
 # Password validation
