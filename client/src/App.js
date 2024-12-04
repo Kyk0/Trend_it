@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
-import {Analytics} from "@vercel/analytics/dist/react/index";
+import { Analytics } from "@vercel/analytics/react";
 
 const App = () => {
   return (
