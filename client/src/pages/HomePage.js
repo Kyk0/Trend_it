@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -22,11 +22,11 @@ ChartJS.register(
 );
 
 const Home = () => {
-    const [randomRow, setRandomRow] = useState(null);
-    const [nearestRow, setNearestRow] = useState(null);
+    const [data, setData] = useState({ randomRow: null, nearestRow: null });
     const [loading, setLoading] = useState(true);
     const [refreshing, setRefreshing] = useState(false);
     const [error, setError] = useState(null);
+    const hasFetched = useRef(false);
 
     const fetchData = async () => {
         setRefreshing(true);
@@ -36,9 +36,11 @@ const Home = () => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            const data = await response.json();
-            setRandomRow(data.random_row);
-            setNearestRow(data.nearest_row);
+            const result = await response.json();
+            setData({
+                randomRow: result.random_row,
+                nearestRow: result.nearest_row,
+            });
         } catch (err) {
             setError(err.message);
         } finally {
@@ -48,19 +50,44 @@ const Home = () => {
     };
 
     useEffect(() => {
-        fetchData();
+        if (!hasFetched.current) {
+            hasFetched.current = true;
+            fetchData();
+        }
     }, []);
 
     if (loading) {
-        return <div className="text-white text-center mt-10">Loading...</div>;
+        return (
+            <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+                <div className="flex flex-col items-center">
+                    <div className="w-16 h-16 border-4 border-t-transparent border-white rounded-full animate-spin mb-4"></div>
+                    <p className="text-xl text-white mb-2">Loading...</p>
+                    <p className="text-lg text-gray-300">This may take a while on the first load.</p>
+                </div>
+            </div>
+        );
     }
 
     if (error) {
-        return <div className="text-red-500 text-center mt-10">Error: {error}</div>;
+        return (
+            <div className="min-h-screen bg-gray-900 text-red-500 flex items-center justify-center">
+                <div className="text-center">
+                    <p className="text-xl">Error: {error}</p>
+                </div>
+            </div>
+        );
     }
 
+    const { randomRow, nearestRow } = data;
+
     if (!randomRow || !nearestRow) {
-        return <div className="text-yellow-500 text-center mt-10">No data available.</div>;
+        return (
+            <div className="min-h-screen bg-gray-900 text-yellow-500 flex items-center justify-center">
+                <div className="text-center">
+                    <p className="text-xl">No data available. Please try refreshing.</p>
+                </div>
+            </div>
+        );
     }
 
     const generateChartData = (row, color) => ({
