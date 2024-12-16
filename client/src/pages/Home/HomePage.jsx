@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import WelcomeSection from './WelcomeSection';
 import WhatIsItSection from './WhatIsItSection';
+import GraphSection from "./GraphSection";
 
 const HomePage = () => {
     useEffect(() => {
@@ -27,6 +28,7 @@ const HomePage = () => {
         <div>
             <WelcomeSection />
             <WhatIsItSection />
+            <GraphSection />
         </div>
     );
 };
