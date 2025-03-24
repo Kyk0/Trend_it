@@ -24,7 +24,7 @@ ROOT_URLCONF = 'Trend_it.Trend_it.urls'
 SECRET_KEY = 'django-insecure-2usimj_29%zr-70&7w*55owzge)2^s!k8f9y=^z4gus6pun3m1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
