@@ -27,5 +27,5 @@ class RandomNeighborView(APIView):
             )
         except Exception as e:
             error_trace = traceback.format_exc()
-            print(error_trace)
-            return Response({"error": f"Unexpected error: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            print(error_trace)  # Log the stack trace for debugging
+            return Response({"error": "An internal error has occurred. Please try again later."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
